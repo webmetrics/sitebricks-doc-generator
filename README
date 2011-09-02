@@ -1,0 +1,75 @@
+This maven plugin auto-generates documentation for Sitebricks API services.
+
+The plugin will scan your sources directory (by default this is src/main/java) for Sitebricks services.
+A Sitebricks service is a class annotated @Service and @At (see below).
+The plugin will generate the documentation in your output directory (by default this is target).
+There is one documentation file created per class.
+
+In order to use this plugin in a project, add the following to your pom:
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>biz.neustar.webmetrics.maven.plugins</groupId>
+            <artifactId>sitebricks-doc-generator</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <executions>
+                <execution>
+                    <id>generate-doc</id>
+                    <goals>
+                        <goal>generate-doc</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+
+The plugin's "generate-doc" goal is bound to the maven "site" phase by default.
+
+To invoke this plugin goal on a project with the above configuration, simply invoke the following command at the root of the project directory:
+
+mvn site
+
+To invoke this plugin goal on a project without the above configuration, issue the following command at the root of the project directory:
+
+mvn biz.neustar.webmetrics.maven.plugins:sitebricks-doc-generator:1.0-SNAPSHOT:generate-doc
+
+
+The following class is an example of a Sitebricks service:
+
+package sample;
+
+import com.google.inject.name.Named;
+import com.google.sitebricks.At;
+import com.google.sitebricks.headless.Reply;
+import com.google.sitebricks.headless.Service;
+import com.google.sitebricks.http.Get;
+
+@Service
+@At("/example-service/api/1.0")
+public class ExampleService {
+
+    /**
+     * Echos a message to the caller.
+     * @param message the message to echo
+     * @return the message
+     */
+    @Get
+    @At("/echo/:message")
+    public Reply<String> echo(@Named("message") String message){
+        return Reply.with(message);
+    }
+}
+
+
+When the sitebricks-doc-generator plugin is executed on a project that contains the above service, a file named sample.ExampleService.txt is
+created with the following contents:
+
+================================
+GET /example-service/api/1.0/echo/:message
+
+Echos a message to the caller.
+URL fields:
+ - message the message to echo
+================================
