@@ -1,4 +1,4 @@
-package biz.neustar.webmetrics.maven.plugins;
+package biz.neustar.maven.plugins;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

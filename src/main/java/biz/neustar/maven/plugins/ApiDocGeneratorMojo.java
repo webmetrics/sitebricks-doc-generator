@@ -1,4 +1,4 @@
-package biz.neustar.webmetrics.maven.plugins;
+package biz.neustar.maven.plugins;
 
 import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.*;
