@@ -4,7 +4,7 @@
 
     <groupId>biz.neustar.maven.plugins</groupId>
     <artifactId>sitebricks-doc-generator</artifactId>
-    <version>1.0-alpha-1</version>
+    <version>1.0-alpha-2-SNAPSHOT</version>
 
     <name>Sitebricks API Documentation Generator</name>
     <packaging>maven-plugin</packaging>
